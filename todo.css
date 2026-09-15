@@ -1,0 +1,35 @@
+body {
+    font-family: Tahoma;
+    background-color: #706570;
+    text-align: center;
+    direction: rtl;
+}
+
+button {
+    background-color: #c431c4;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+.done {
+    text-decoration: line-through;
+    color: gray;
+
+}
+
+.input-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+
+}
+
+.task-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 300px;
+        margin: 5xp auto;
+        list-style: none;
+}
