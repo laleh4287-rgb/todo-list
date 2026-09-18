@@ -1,0 +1,30 @@
+body {
+    font-family: Tahoma;
+    background-color: #f0f0f0;
+    text-align: center;
+    direction: rtl;
+    padding: 30px;
+}
+
+input {
+    padding: 8px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 120px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#result {
+    color: #4CAF50;
+    font-weight: bold;
+}

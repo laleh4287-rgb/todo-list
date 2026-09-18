@@ -27,7 +27,7 @@ for (let task of tasks) {
 addButton.addEventListener("click", function() {
     console.log(taskInput.value);
     let li = document.createElement('li');
-    li.classList.add('task-item');
+    li.classList.add('task-item ');
     li.textContent = taskInput.value;
 
     li.addEventListener("click", function() {
