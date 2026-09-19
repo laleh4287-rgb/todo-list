@@ -7,10 +7,15 @@ let cities = {
     mashhad: { lat: 36.2605, lon: 59.6168 },
     isfahan: { lat: 32.6539, lon: 51.6660 },
     shiraz: { lat: 29.5918, lon: 52.5837 },
-    tabriz: { lat: 38.0800, lon: 46.2919 }
+    tabriz: { lat: 38.0800, lon: 46.2919 },
+    kerman: { lat: 30.2839, lon: 57.0834 },
+    yazd: { lat: 31.8974, lon: 54.3569 },
+    ahvaz: { lat: 31.3183, lon: 48.6706 },
+    qom: { lat: 34.6416, lon: 50.8746 },
+    rasht: { lat: 37.2808, lon: 49.5832 }
 };
 
-searchBtn.addEventListener("click", function() {
+searchBtn.addEventListener("click", async function() {
     let city = cityInput.value.toLowerCase();
 
     if (!cities[city]) {
@@ -23,15 +28,24 @@ searchBtn.addEventListener("click", function() {
     let lat = cities[city].lat;
     let lon = cities[city].lon;
 
-    fetch("https://api.open-meteo.com/v1/forecast?latitude=" + lat + "&longitude=" + lon + "&current_weather=true")
-        .then(function(response) {
-            return response.json();
-        })
-        .then(function(weatherData) {
-            let temp = weatherData.current_weather.temperature;
-            output.textContent = "دمای هوای " + city + ": " + temp + " درجه سانتی‌گراد";
-        })
-        .catch(function(error) {
-            output.textContent = "متأسفانه مشکلی پیش اومد.";
-        });
+    try {
+        let response = await fetch("https://api.open-meteo.com/v1/forecast?latitude=" + lat + "&longitude=" + lon + "&current_weather=true");
+        let weatherData = await response.json();
+        let temp = weatherData.current_weather.temperature;
+
+        let icon = "";
+        if (temp >= 30) {
+            icon = "🔥";
+        } else if (temp >= 15) {
+            icon = "☀️";
+        } else if (temp >= 0) {
+            icon = "☁️";
+        } else {
+            icon = "❄️";
+        }
+
+        output.textContent = icon + " دمای هوای " + city + ": " + temp + " درجه سانتی‌گراد";
+    } catch (error) {
+        output.textContent = "متأسفانه مشکلی پیش اومد.";
+    }
 });
