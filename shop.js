@@ -6,6 +6,10 @@ let products = [
 ];
 
 let cart = [];
+let savedCart = localStorage.getItem("cart");
+if (savedCart) {
+    cart = JSON.parse(savedCart);
+}
 let productsDiv = document.getElementById("products");
 let cartList = document.getElementById("cart");
 let totalSpan = document.getElementById("total");
@@ -44,6 +48,7 @@ function updateCart() {
 
         li.appendChild(removeBtn);
         cartList.appendChild(li);
+        localStorage.setItem("cart", JSON.stringify(cart));
         total = total + item.price;
     });
 
